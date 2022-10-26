@@ -1,0 +1,87 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="/static/css/styles.css">
+{% endblock %}
+
+{% block title %}Typing{% endblock %}
+
+{% block content %}
+<div class="jumbotron add text-center">
+    <div class="container">
+      <h1 class="display-4" id="demo">00:00</h1>
+      <hr class="my-4">
+    </div>
+</div>
+
+<div class="container div-text">
+    <textarea class="text-area"  id="text-area">
+
+    </textarea>
+</div>
+
+<script>
+
+var cancelled = false;
+var success = false;
+
+let timeSecond = 300;
+const timeH = document.querySelector("h1");
+
+displayTime(timeSecond);
+
+const countDown = setInterval(() => {
+  if (cancelled) {
+    return;
+  }
+  timeSecond--;
+  displayTime(timeSecond);
+  if (timeSecond == 0 || timeSecond < 1) {
+    endCount();
+    clearInterval(countDown);
+  }
+}, 1000);
+
+
+function displayTime(second) {
+  const min = Math.floor(second / 60);
+  const sec = Math.floor(second % 60);
+  timeH.innerHTML = `
+  ${min < 10 ? "0" : ""}${min}:${sec < 10 ? "0" : ""}${sec}
+  `;
+}
+
+function endCount() {
+  timeH.innerHTML = "00:00";
+  success = true;
+}
+
+
+let typingTimer;
+let doneTypingInterval = 5000;
+let myInput = document.getElementById('text-area');
+
+//on keyup, start the countdown
+myInput.addEventListener('keyup', () => {
+    clearTimeout(typingTimer);
+    if (myInput.value) {
+        typingTimer = setTimeout(doneTyping, doneTypingInterval);
+    }
+});
+
+//user is "finished typing," do something
+
+function doneTyping () {
+    if (success) {
+        return;
+      }
+    var dis = document.getElementById("text-area");
+    dis.parentNode.removeChild(dis);
+    cancelled = true;
+}
+
+</script>
+
+{% endblock %}

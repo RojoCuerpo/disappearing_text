@@ -1,0 +1,58 @@
+/* This CSS file will need to be added to the styling of 
+your web pages for the styles to be rendered. */
+
+.jumbotron{
+  display: flex;
+  align-items: center;
+  margin: 0;
+  color: white;
+  background-color: #333;
+  padding: 0;
+}
+
+.exp-div{
+    text-align: center;
+}
+
+.explain{
+    text-align: justify;
+    margin: 50px auto;
+}
+
+
+button.click{
+    cursor: pointer;
+    position: relative;
+
+    background: white;
+    border-radius: 5px;
+    border-color: #333;
+    padding: 0 5px;
+}
+
+
+button.click:hover {
+      border: none;
+      background-color:#333;
+      color: white;
+      transition: 0.7s;
+  }
+
+.div-text{
+    height: 70%;
+    text-align:center;
+}
+
+.text-area{
+    width: 40%;
+    height: 400px;
+    padding: 10px;
+    margin-top: 45px;
+    position: relative;
+    border-radius: 5px;
+}
+
+.text-area:focus{
+    outline: none !important;
+
+}
